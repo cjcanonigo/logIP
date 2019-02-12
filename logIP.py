@@ -4,6 +4,14 @@ import subprocess
 import datetime as dt
 from slackclient import SlackClient
 import sys
+import os
+
+
+def touch(path):
+    # Creates empty file
+    with open(path, 'a'):
+        os.utime(path, None)
+
 
 # Log Vars
 currIP = 'currIP.txt'
@@ -16,6 +24,11 @@ sameIP = False
 if len(sys.argv) > 1:
     slackToken = sys.argv[1]
     slackChannel = sys.argv[2]
+
+
+# Make sure these files exist
+touch(currIP)
+touch(histIP)
 
 # Run IP Command
 cmd = ['dig', '@resolver1.opendns.com', 'ANY', 'myip.opendns.com', '+short']
