@@ -1,2 +1,4 @@
 currIP.txt
 histIP.txt
+jenv/
+env-setup.sh
