@@ -6,21 +6,18 @@ from slackclient import SlackClient
 import sys
 import os
 
-# Log Vars
-currIP = 'currIP.txt'
+# Run IP Command
+cmd = ['dig', '@resolver1.opendns.com', 'ANY', 'myip.opendns.com', '+short']
+result = subprocess.run(cmd, stdout=subprocess.PIPE)
+ip = result.stdout.decode('utf-8')
 
 # Set Credentials
 if len(sys.argv) >= 1:
     slackToken = sys.argv[1]
     slackChannel = 'test_bmo'
 
-
 # Set msg base
-slackMsg = 'Current Home IP: '
-
-# Check if IP changed
-with open(currIP, 'r+') as f:
-    slackMsg += f.readline()
+slackMsg = 'Current Home IP: ' + ip
 
 # Run Slack if data has changed
 sc = SlackClient(slackToken)
