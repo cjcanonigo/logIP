@@ -14,7 +14,7 @@ ip = result.stdout.decode('utf-8')
 # Set Credentials
 if len(sys.argv) >= 1:
     slackToken = sys.argv[1]
-    slackChannel = 'test_bmo'
+    slackChannel = 'test_kitt'
 
 # Set msg base
 slackMsg = 'Current Home IP: ' + ip
